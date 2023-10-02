@@ -1,3 +1,5 @@
 from math import factorial
 
-print(factorial(30))
+userInput = int(input("Enter value: "))
+
+print(factorial(userInput))
