@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(nullptr));
+    vector<pair<int,int>> coords;
+    pair<int, int> tempPair;
+    while (coords.size() != 5) {
+        cout << "Enter hit's coord: ";
+        cin >> tempPair.first >> tempPair.second;
+        (rand() & 1) ? tempPair.first += rand()%5 : tempPair.first -= rand()%5;
+        (rand() & 1) ? tempPair.second += rand()%5 : tempPair.second -= rand()%5;
+        coords.emplace_back(tempPair);
+    }
+    
+    int score = 0;
+    int temp;
+    for (pair<int, int> i : coords) {
+        cout << "Hit in " << i.first << ' ' << i.second;
+        temp = max(abs(i.first), abs(i.second));
+        temp = max(temp, 1);
+        if (temp < 6)  {
+            score += (6 - temp);
+            cout << " +" << (6 - temp) << " points" << '\n';
+        } else cout << " +0 points" << '\n';
+    }
+    cout << "Your score is " << score << '\n';
+    if (score < 10) cout << "Loser" << '\n';
+    else cout << "Lover" << '\n';
+
+    return 0;
+}
