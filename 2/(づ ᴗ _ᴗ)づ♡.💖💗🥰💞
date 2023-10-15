@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -15,17 +15,17 @@ int main() {
         (rand() & 1) ? tempPair.second += rand()%5 : tempPair.second -= rand()%5;
         coords.emplace_back(tempPair);
     }
-    
+    cout << '\n';
+
     int score = 0;
+    double range;
     int temp;
     for (pair<int, int> i : coords) {
-        cout << "Hit in " << i.first << ' ' << i.second;
-        temp = max(abs(i.first), abs(i.second));
-        temp = max(temp, 1);
-        if (temp < 6)  {
-            score += (6 - temp);
-            cout << " +" << (6 - temp) << " points" << '\n';
-        } else cout << " +0 points" << '\n';
+        cout << "Hit in " << i.first << ':' << i.second;
+        range = hypot(i.first, i.second);
+        temp = max((5 - (int)floor(range)), 0);
+        score += temp;
+        cout << " (+" << temp << " points)" << '\n';
     }
     cout << "Your score is " << score << '\n';
     if (score < 10) cout << "Loser" << '\n';
