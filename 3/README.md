@@ -1,4 +1,5 @@
 Product состоит из некоторых Igregients и имеет какойто name
+
 KFC владеет всеми своими product
 
 Cook несет за собой право изменить список products при помощи функции ChangeAssortiment
