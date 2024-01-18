@@ -9,12 +9,14 @@
 #include "Teacher.h"
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 
 class System {
 private:
     vector<pair<Passport, vector<short>>> m_allMarks;
     vector<Teacher> m_allTeachers;
+    int solveMark(Teacher*, Student*, int);
 public:
     vector<short> getMarks(Passport *p);
     bool excellent(Passport *p);

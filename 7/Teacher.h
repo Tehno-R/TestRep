@@ -9,8 +9,12 @@
 using namespace std;
 
 class Teacher : public Passport{
+private:
+    int happy = 3;
+
 public:
     Teacher(string fName, string sName, short age);
+    int getHappy();
 };
 
 

@@ -5,3 +5,4 @@
 #include "Teacher.h"
 
 Teacher::Teacher(string fName, string sName, short age) : Passport(fName, sName, age) {}
+int Teacher::getHappy() {return this->happy; }

@@ -28,7 +28,7 @@ void System::setMark(Teacher *t, Student *s, short m) {
         if (*(i.getPassport()) == *(t->getPassport())) {
             for (auto &j : m_allMarks) {
                 if (*(j.first.getPassport()) == *(s->getPassport())) {
-                    j.second.emplace_back(m);
+                    j.second.emplace_back(solveMark(t, s, m));
                     return;
                 }
             }
@@ -43,6 +43,11 @@ void System::addTeacher(Teacher *t) {
         if (i.getPassport() == t->getPassport()) return;
     }
     m_allTeachers.emplace_back(*t);
+}
+
+int System::solveMark(Teacher *t, Student *s, int m) {
+    if (!m) m = 1;
+    return (t->getHappy()+ (excellent(s) ? 1 : 0)/2)+1 * m;
 }
 
 
