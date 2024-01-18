@@ -1,77 +1,40 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
+
+#include "Passport.h"
+#include "System.h"
 
 using namespace std;
 
-struct Passport {
-public:
-    const string m_firstName;
-    const string m_secondName;
-    const short m_age;
-    Passport(string firstName, string secondName, short age)
-    : m_firstName(firstName), m_secondName(secondName), m_age(age){};
-
-    bool operator==(Passport &other) {
-        if ((this->m_firstName == other.m_firstName) &&
-            (this->m_secondName == other.m_secondName) &&
-            (this->m_age == other.m_age)) return true;
-        else return false;
-    }
-};
-
-class System {
-private:
-    vector<pair<Passport, vector<short>>> m_allMarks;
-public:
-    void setMark(Passport *p, short mark) {
-        for (auto &i : m_allMarks) {
-            if (i.first == *p) i.second.emplace_back(mark);
-            return;
-        }
-        m_allMarks.emplace_back(make_pair(*p,vector<short>{mark}));
-        return;
-    }
-    vector<short> getMarks(Passport *p) {
-
-        for (auto &i : m_allMarks) {
-            if (i.first == *p) return i.second;
-        }
-        return {};
-    }
-    bool excellent(Passport *p) {
-        vector<short> *marks = nullptr;
-        for (auto &i : m_allMarks) {
-            if (i.first == *p)  marks = &i.second;
-        }
-        if (marks == nullptr) return false;
-        else {
-            if (std::all_of(marks->begin(), marks->end(), [](int i){ return i == 5; })) return true;
-            return false;
-        }
-    }
-};
-
-class Student : public Passport{
-public:
-    Student(string fName, string sName, short age) : Passport(fName, sName, age) {};
-    Passport getInfo() {return Student(m_firstName, m_secondName, m_age);}
-};
-
-
 int main() {
-    System school;
+    System subj1;
     Student *s1 = new Student("Nikita", "Kerjakov", 19);
-    school.setMark(s1, 5);
-    school.setMark(s1, 4);
-    school.setMark(s1, 3);
-    school.setMark(s1, 5);
-    vector<short> nikitasMarks = school.getMarks(s1);
+    Student *s2 = new Student("Ivan", "Losevskiy", 18);
+    Teacher *t1 = new Teacher("Marina", "Osipova", 30);
+    subj1.addTeacher(t1);
+    // part 1
+    subj1.setMark(t1,s1, 5);
+    subj1.setMark(t1,s1, 4);
+    subj1.setMark(t1,s1, 3);
+    subj1.setMark(t1,s1, 5);
+    subj1.setMark(t1,s2, 5);
+    subj1.setMark(t1,s2, 5);
+    vector<short> nikitasMarks = subj1.getMarks(s1);
+    vector<short> ivansMarks = subj1.getMarks(s2);
     cout << "Nikita's marks:";
     for (auto i : nikitasMarks) {
         cout << '\t' << i;
     }
     cout << endl;
+    cout << "Ivan's marks:";
+    for (auto i : ivansMarks) {
+        cout << '\t' << i;
+    }
+    cout << endl;
+    cout << s1->m_firstName + " excellent? - " << (subj1.excellent(s1) ? "Yes" : "No") << endl;
+    cout << s2->m_firstName + " excellent? - " << (subj1.excellent(s2) ? "Yes" : "No") << endl;
+    // part 2
+
     return 0;
 }
