@@ -39,5 +39,6 @@ int main() {
     subj1.doLesson(t1);
     // part ???
     subj1.parentSpeak(p1);
+    subj1.meeting(vector<Parent>{*p1}, t1);
     return 0;
 }

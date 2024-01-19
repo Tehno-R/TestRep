@@ -30,12 +30,14 @@ void System::setMark(Teacher *t, Student *s, short m) {
                 if (*(j.first.getPassport()) == *(s->getPassport())) {
                     j.second.emplace_back(solveMark(t, s, m));
                     t->marked();
+                    j.first.wasMarked();
                     return;
                 }
             }
             m = solveMark(t,s,m);
             m_allMarks.emplace_back(make_pair(Student{*s}, vector<short>{m}));
             t->marked();
+            (m_allMarks.end()-1)->first.wasMarked();
             return;
         }
     }
@@ -92,6 +94,44 @@ void System::parentSpeak(Parent *p) {
             }
         }
     }
+}
+
+void System::meeting(vector<Parent> parents, Teacher *t) { //                                   Схалтурил
+    vector<Passport> was;
+    cout << "Start meeting" << endl;
+    if (t != nullptr) cout << t->getPassport()->m_firstName + ' ' + t->getPassport()->m_secondName + " came to meeting" << endl;
+    else {
+        cout << "Teacher not come" << endl;
+        cout << "Meeting completed" << endl;
+        return;
+    }
+    vector<Passport> childs;
+    for (auto i : parents) {
+        childs = i.getChilds();
+        for (auto j : childs) {
+            for (auto &k : m_allMarks) {
+                if (*(j.getPassport()) == *(k.first.getPassport()))  {
+                    if (k.first.getMarked()) {
+                        parentSpeak(&i);
+                        k.first.dropMarked();
+                    }
+                    was.emplace_back(*(k.first.getPassport()));
+                }
+            }
+        }
+    }
+    cout << "Not came: " << endl;
+    for (auto i : m_allMarks) {
+        bool flag = true;
+        for (auto j : was) {
+            if (*(j.getPassport()) == *(i.first.getPassport())) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) cout << i.first.getPassport()->m_firstName + ' ' + i.first.getPassport()->m_secondName << endl;
+    }
+    cout << "Meeting completed" << endl;
 }
 
 

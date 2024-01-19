@@ -7,8 +7,13 @@
 #include "Passport.h"
 
 class Student : public Passport{
+private:
+    bool marked = false;
 public:
     Student(string fName, string sName, short age);
+    void wasMarked();
+    bool getMarked();
+    bool dropMarked();
 };
 
 

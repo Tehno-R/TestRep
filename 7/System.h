@@ -27,6 +27,7 @@ public:
     void addTeacher(Teacher* t);
     void doLesson(Teacher* t);
     void parentSpeak(Parent *p);
+    void meeting(vector<Parent> parents, Teacher *t = nullptr);
 };
 
 
