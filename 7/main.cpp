@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 
-#include "Passport.h"
 #include "System.h"
 
 using namespace std;
@@ -34,7 +33,8 @@ int main() {
     cout << endl;
     cout << s1->m_firstName + " excellent? - " << (subj1.excellent(s1) ? "Yes" : "No") << endl;
     cout << s2->m_firstName + " excellent? - " << (subj1.excellent(s2) ? "Yes" : "No") << endl;
+    cout << endl;
     // part 2
-
+    subj1.doLesson(t1);
     return 0;
 }

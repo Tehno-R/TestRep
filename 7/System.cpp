@@ -50,5 +50,29 @@ int System::solveMark(Teacher *t, Student *s, int m) {
     return (t->getHappy()+ (excellent(s) ? 1 : 0)/2)+1 * m;
 }
 
+void System::doLesson(Teacher *t) {
+    srand(time(nullptr));
+    bool flag = false;
+    for (auto i : m_allTeachers) {
+        if (*(i.getPassport()) == *(t->getPassport())) {
+            flag = true;
+            break;
+        }
+    }
+    if (!flag) return;
+    cout << "Teacher: " << t->m_firstName + ' ' + t->m_secondName << endl;
+    vector<Student> came;
+    cout << "On lesson are:";
+    for (int i = 0; i < m_allMarks.size(); i += rand()) {
+        came.emplace_back(m_allMarks[i].first);
+        cout << '\t' << (came.end()-1)->m_firstName + ' ' + (came.end()-1)->m_secondName;
+    }
+    cout << endl;
+    for (int i = 0; i < came.size(); ++i) {
+        setMark(t, &came[i], (rand()%5)+1);
+    }
+    cout << "Marks have been made" << endl;
+}
+
 
 

@@ -10,11 +10,13 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <random>
+#include <iostream>
 
 
 class System {
 private:
-    vector<pair<Passport, vector<short>>> m_allMarks;
+    vector<pair<Student, vector<short>>> m_allMarks;
     vector<Teacher> m_allTeachers;
     int solveMark(Teacher*, Student*, int);
 public:
@@ -22,6 +24,7 @@ public:
     bool excellent(Passport *p);
     void setMark(Teacher* t, Student* s, short m);
     void addTeacher(Teacher* t);
+    void doLesson(Teacher* t);
 };
 
 
