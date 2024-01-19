@@ -29,11 +29,13 @@ void System::setMark(Teacher *t, Student *s, short m) {
             for (auto &j : m_allMarks) {
                 if (*(j.first.getPassport()) == *(s->getPassport())) {
                     j.second.emplace_back(solveMark(t, s, m));
+                    t->marked();
                     return;
                 }
             }
             m = solveMark(t,s,m);
             m_allMarks.emplace_back(make_pair(Student{*s}, vector<short>{m}));
+            t->marked();
             return;
         }
     }

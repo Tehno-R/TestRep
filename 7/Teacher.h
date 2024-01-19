@@ -14,11 +14,14 @@ private:
     bool hihihaha = false;
     int happy = 3;
     short favMark = 0;
+    short period = 0;
+    short curPeriod = 0;
 public:
     Teacher(string fName, string sName, short age);
     int getHappy();
     bool getHihihaha();
     short getFavmark();
+    void marked();
 };
 
 
