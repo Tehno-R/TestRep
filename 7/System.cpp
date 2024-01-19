@@ -32,6 +32,7 @@ void System::setMark(Teacher *t, Student *s, short m) {
                     return;
                 }
             }
+            m = solveMark(t,s,m);
             m_allMarks.emplace_back(make_pair(Student{*s}, vector<short>{m}));
             return;
         }
@@ -46,8 +47,9 @@ void System::addTeacher(Teacher *t) {
 }
 
 int System::solveMark(Teacher *t, Student *s, int m) {
+    if (t->getHihihaha()) return t->getFavmark();
     if (!m) m = 1;
-    return (t->getHappy()+ (excellent(s) ? 1 : 0)/2)+1 * m;
+    return (t->getHappy() + (excellent(s) ? 1 : 0)/2)+1 * m;
 }
 
 void System::doLesson(Teacher *t) {
