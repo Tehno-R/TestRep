@@ -11,6 +11,7 @@ Parent::Parent(string fName, string sName, short age, vector<Passport> childs) :
     }
     srand(time(nullptr));
     this->happy = rand()%10;
+    old = rand()%2;
 }
 
 vector<Passport> Parent::getChilds() {
@@ -19,4 +20,8 @@ vector<Passport> Parent::getChilds() {
 
 int Parent::getHappy() {
     return this->happy;
+}
+
+bool Parent::getOld() {
+    return this->old;
 }

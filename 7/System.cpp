@@ -89,8 +89,8 @@ void System::parentSpeak(Parent *p) {
             if (i == *(j.first.getPassport())) {
                 flag1 = excellent(&i);
                 flag2 = p->getHappy()>=5;
-                if (flag1) cout << i.m_firstName + " is excellent, Im proud" << endl;
-                if (flag2) cout << "I very very love my " + i.m_firstName << endl;
+                if (flag1 || p->getOld()) cout << i.m_firstName + " is excellent, Im proud" << endl;
+                if (flag2 || p->getOld()) cout << "I very very love my " + i.m_firstName << endl;
             }
         }
     }
@@ -113,6 +113,8 @@ void System::meeting(vector<Parent> parents, Teacher *t) { //                   
                 if (*(j.getPassport()) == *(k.first.getPassport()))  {
                     if (k.first.getMarked()) {
                         parentSpeak(&i);
+                        if (i.getOld()) cout << childs[rand()%childs.size()].getPassport()->m_firstName
+                        << " is weird child hihihi" << endl;
                         k.first.dropMarked();
                     }
                     was.emplace_back(*(k.first.getPassport()));

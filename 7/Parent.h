@@ -13,10 +13,12 @@ class Parent : Passport {
 private:
     vector<Passport> childs;
     int happy = 0;
+    bool old = false;
 public:
     Parent(string fName, string sName, short age, vector<Passport> childs);
     vector<Passport> getChilds();
-     int getHappy();
+    int getHappy();
+    bool getOld();
 };
 
 
