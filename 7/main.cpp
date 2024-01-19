@@ -11,6 +11,7 @@ int main() {
     Student *s1 = new Student("Nikita", "Kerjakov", 19);
     Student *s2 = new Student("Ivan", "Losevskiy", 18);
     Teacher *t1 = new Teacher("Marina", "Osipova", 30);
+    Parent *p1 = new Parent("Olga", "Mlakir", 38, vector<Passport>{*(s1->getPassport())});
     subj1.addTeacher(t1);
     // part 1
     subj1.setMark(t1,s1, 5);
@@ -36,5 +37,7 @@ int main() {
     cout << endl;
     // part 2
     subj1.doLesson(t1);
+    // part ???
+    subj1.parentSpeak(p1);
     return 0;
 }

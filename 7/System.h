@@ -7,6 +7,7 @@
 #include "Passport.h"
 #include "Student.h"
 #include "Teacher.h"
+#include "Parent.h"
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -25,6 +26,7 @@ public:
     void setMark(Teacher* t, Student* s, short m);
     void addTeacher(Teacher* t);
     void doLesson(Teacher* t);
+    void parentSpeak(Parent *p);
 };
 
 

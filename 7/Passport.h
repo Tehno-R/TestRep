@@ -19,6 +19,11 @@ public:
             (this->m_age == other.m_age)) return true;
         else return false;
     };
+//    Passport& operator=(const Passport &other) {
+//        m_firstName = other.m_firstName;
+//        m_secondName = other.m_secondName;
+//        m_age = other.m_age;
+//    };
 
     Passport* getPassport();
 };

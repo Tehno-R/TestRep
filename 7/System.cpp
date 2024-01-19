@@ -78,5 +78,21 @@ void System::doLesson(Teacher *t) {
     cout << "Marks have been made" << endl;
 }
 
+void System::parentSpeak(Parent *p) {
+    bool flag1 = false;
+    bool flag2 = false;
+    vector<Passport> childs = p->getChilds();
+    for (auto i : childs) {
+        for (auto j : m_allMarks) {
+            if (i == *(j.first.getPassport())) {
+                flag1 = excellent(&i);
+                flag2 = p->getHappy()>=5;
+                if (flag1) cout << i.m_firstName + " is excellent, Im proud" << endl;
+                if (flag2) cout << "I very very love my " + i.m_firstName << endl;
+            }
+        }
+    }
+}
+
 
 
